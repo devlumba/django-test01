@@ -1,0 +1,20 @@
+migrations
+
+python manage.py makemigrations
+python manage.py migrate
+
+
+shell, User, Post, all(), get()
+
+python manage.py shell
+>>> from blog.models import Post
+>>> from django.contrib.auth.models import User
+>>> User.objects.all()
+>>> User.objects.first()
+>>> User.objects.filter(username='admin').first()
+>>> User.objects.get(id=1)
+>>> User.objects.get(username='admin')
+>>> Post.objects.all()
+>>> post_01 = Post(title='1st post', content='not empty', author=user)
+>>> post_01.save()
+>>> Post.objects.all()
