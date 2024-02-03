@@ -32,13 +32,18 @@
               </div>
                 <div class="navbar-nav">
                   <a class="nav-item nav-link" href="#">Login</a>
-                  <a class="nav-item nav-link" href="#">Register</a>
+                  <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
                 </div>
             </div>
         </nav>
 
     </header>
     <div class="container">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
         {% block body %}
         {% endblock body %}
     </div>

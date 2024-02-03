@@ -1,0 +1,9 @@
+{% extends 'blog/base.html' %}
+{% block body %}
+    {% for i in users %}
+        <div class="post">
+            <a href="#"><h1> {{ i.username }} </h1></a><hr>
+            <h2>{{ i.email }} </h2>
+        </div>
+    {% endfor %}
+{% endblock body %}

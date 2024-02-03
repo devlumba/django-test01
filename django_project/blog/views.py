@@ -1,24 +1,9 @@
 from django.shortcuts import render
+from django.contrib.auth.models import User
 from .models import Post
 
 
 # Create your views here.
-
-posts = [
-    {
-        'author': 'God',
-        'title': 'TOP 10 HOLY-C FRAMEWORKS',
-        'content': '',
-        'date_posted': 'December 29, 0000',
-    },
-    {
-        'author': 'Isa',
-        'title': 'C++ CRITIQUE',
-        'content': "don't",
-        'date_posted': 'December 29, 1989',
-    }
-
-]
 
 
 def home(request):
@@ -31,3 +16,11 @@ def home(request):
 
 def about(request):
     return render(request, template_name="blog/about.html", context={'title': "About page"})
+
+
+def all_users(request):
+    context = {
+        'users': User.objects.all(),
+        'title': 'All Users'
+    }
+    return render(request, template_name="blog/all_users.html", context=context)
