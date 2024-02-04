@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+{% block body %}
+<div class="post">
+    <form method="POST" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <fieldset>
+        <legend class="border-bottom mb-4">Logout</legend>
+    </fieldset>
+        <div class="form-group">
+            <button class="btn btn-outline-info" type="submit">Logout</button>
+        </div>
+    </form>
+</div>
+{% endblock body %}
