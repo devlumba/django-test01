@@ -17,7 +17,7 @@
 </head>
 <body>
     <header class="site-header">
-        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #bdccf0;">
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #bdccf0;">
             <div class="container">
               <a class="navbar-brand" href="{% url 'blog-home' %}">Django</a>
               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,12 +27,12 @@
                 <div class="navbar-nav">
                   <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home <span class="sr-only">(current)</span></a>
                   <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
-                  <a class="nav-item nav-link my-2 my-sm-0" href="#">Another empty button</a>
+                  <a class="nav-item nav-link my-2 my-sm-0" href="{% url 'blog-all_users' %}">All Users</a>
                 </div>
               </div>
                 <div class="navbar-nav">
                     {% if user.is_authenticated %}
-                        <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                        <a class="nav-item nav-link" href="{% url 'profile' %}">{{ user.username }}</a>
                         <a class="nav-item nav-link" href="{% url 'logout-page' %}">Logout</a>
                     {% else %}
                         <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
@@ -43,7 +43,7 @@
         </nav>
 
     </header>
-    <div class="container">
+    <div class="container" style="margin-top: 40px;">
         {% if messages %}
             {% for message in messages %}
                 <div class="alert alert-{{ message.tags }}">{{ message }}</div>

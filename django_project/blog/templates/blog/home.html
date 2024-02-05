@@ -3,7 +3,8 @@
     {% for i in posts %}
         <div class="post">
             <a href="#"><h1> {{ i.title }} </h1></a>
-            <small><a href="#">{{ i.author }}</a> - {{ i.date_posted|date:"F d, Y" }} </small>  <hr>
+            <small><img class="rounded-circle post-account-img" src="{{ i.author.profile.image.url }}">
+            <a href="#">{{ i.author }}</a> - {{ i.date_posted|date:"F d, Y" }} </small>  <hr>
             {% if i.content %}<h2>{{ i.content }} </h2>{% endif %}
 
         </div>

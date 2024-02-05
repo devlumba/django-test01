@@ -2,8 +2,15 @@
 {% block body %}
     {% for i in users %}
         <div class="post">
-            <a href="#"><h1> {{ i.username }} </h1></a><hr>
-            <h2>{{ i.email }} </h2>
+            <div class="content-section">
+                <div class="media">
+                    <img class="rounded-circle account-img" src="{{ i.profile.image.url }}">
+                    <div class="media-body">
+                        <h2 class="account-heading">{{ i.username }}</h2>
+                        <p class="text-secondary">{{ i.email }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     {% endfor %}
 {% endblock body %}
