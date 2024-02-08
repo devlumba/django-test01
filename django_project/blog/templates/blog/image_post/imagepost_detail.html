@@ -1,0 +1,20 @@
+{% extends "blog/base.html" %}
+{% block body %}
+    <div class="image_post-detail-div">
+        <div class="image_post-detail">
+            <h1 class="article-title"> {{ object.title }} </h1><hr>
+            <img class="image_post-image" src="{{ object.content.url }}"><br>
+            {% if object.author == user %}
+                <a class="btn btn-primary" href="{% url 'image_post-update' object.id %}">Edit</a>
+                <a class="btn btn-danger" href="{% url 'image_post-delete' object.id %}">Delete</a>
+            {% endif %}
+        </div>
+        <div class="image_post-detail-user">
+            {% if object.author %}
+            <img class="rounded-circle post-detail-account-img" src="{{ object.author.profile.image.url }}">
+            <a href="{% url 'user-detail' object.author.id %}">{{ object.author }}</a><br>
+            {% endif %}
+            <small style="font-size: 10px;">Posted at <b>{{ object.date_posted|date:"F d, Y" }}</b> </small>
+        </div>
+    </div>
+{% endblock body %}

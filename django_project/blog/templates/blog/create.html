@@ -1,0 +1,14 @@
+{% extends 'blog/base.html' %}
+{% block body %}
+    <div style="margin-top: 70px;">
+        <div style="display: inline-block; width: 100px; height: 100px; margin-left: 350px; margin-right: 20px" class="post">
+            <a href="{% url 'post-create' %}"><h1>Text Post</h1></a>
+        </div>
+        <div style="display: inline-block; width: 100px; height: 100px; margin-right: 20px; margin-left: 20px;" class="post">
+            <a href="{% url 'image_post-create' %}"><h1>Image Post</h1></a>
+        </div>
+        <div style="display: inline-block; width: 100px; height: 100px; margin-right: 350px; margin-left: 20px;" class="post">
+            <a href="{% url 'video_post-create' %}"><h1>Video Post</h1></a>
+        </div>
+    </div>
+{% endblock body %}

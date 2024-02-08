@@ -1,0 +1,47 @@
+{% extends "blog/base.html" %}
+{% block body %}
+    <div class="post">
+        <div class="content-section">
+            <div class="media">
+                <div class="media-body">
+                    <h1 class="account-heading">{{ view.kwargs.username }}</h1>
+                    <p class="text-secondary">{{ view.kwargs.email }}</p>
+                    {% if view.kwargs.username == user.username %}
+                        <a class="btn btn-outline-info" href="{% url 'profile' %}">Edit Profile</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {% for i in posts %}
+        <div class="post">
+            <a class="article-title" href="{% url 'post-detail' i.id %}"><h1> {{ i.title }} </h1></a>
+            <small><img class="rounded-circle post-account-img" src="{{ i.author.profile.image.url }}">
+            <a href="{% url 'user-detail' i.author.id %}">{{ i.author }}</a> - {{ i.date_posted|date:"F d, Y" }} </small>  <hr>
+            {% if i.content %}<h2>{{ i.content }} </h2>{% endif %}
+        </div>
+    {% endfor %}
+    {% if is_paginated %}
+        {% if page_obj.has_previous %}
+            <a class="btn btn-info" href="?page=1">1</a>
+            {% if page_obj.previous_page_number > 1 %}
+                ...<a class="btn btn-info" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+            {% endif %}
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+            {% if page_obj.number == num%}
+                <a class="btn btn-secondary" href="?page={{ num }}">{{ num }}</a>
+            {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+            <a class="btn btn-info" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+            {% if page_obj.next_page_number < page_obj.paginator.num_pages %}
+                ...<a class="btn btn-info" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+            {% endif %}
+        {% endif %}
+{% endif %}
+
+{% endblock body %}

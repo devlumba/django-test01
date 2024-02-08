@@ -1,0 +1,8 @@
+deleted stuff for displaying posts at user-detail
+    {% for post in object.post_set.all %}
+        <div class="post">
+            <a href="{% url 'post-detail' post.id %}"><h1 class="article-title"> {{ post.title }} </h1></a>
+            <small>{{ post.date_posted|date:"F d, Y" }} </small>  <hr>
+            <h2>{{ post.content }} </h2>
+        </div>
+    {% endfor %}

@@ -1,0 +1,46 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block body %}
+    <div class="home-body">
+        {% for i in posts %}
+            <div class="home-image_post-object">
+                <a class="article-title" href="{% url 'image_post-detail' i.id %}"><h1 style="font-size: 12px;">
+                    {{ i.title }} </h1></a>
+                {% if i.author %}
+                <small><img class="rounded-circle post-account-img" src="{{ i.author.profile.image.url }}">
+                    <a href="{% url 'user-detail' i.author.id %}">{{ i.author }}</a>
+                    - {{ i.date_posted|date:"F d, Y" }} </small>
+                {% else %}
+                <small><img class="rounded-circle post-account-img" src="{% static 'users/deleted.png' %}" >
+                    deleted
+                    - {{ i.date_posted|date:"F d, Y" }} </small>
+
+                {% endif %}<hr><br>
+                <img class="home-posts-image" src="{{ i.content.url }}"> <br>
+                <a href="{% url 'image_post-detail' i.id %}" class="btn btn-outline-secondary">View Post</a>
+            </div>
+        {% endfor %}
+        {% if is_paginated %}
+            {% if page_obj.has_previous %}
+                <a class="btn btn-info" href="?page=1">1</a>
+                {% if page_obj.previous_page_number > 1 %}
+                    ...<a class="btn btn-info" href="?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+                {% endif %}
+            {% endif %}
+
+            {% for num in page_obj.paginator.page_range %}
+                {% if page_obj.number == num%}
+                    <a class="btn btn-secondary" href="?page={{ num }}">{{ num }}</a>
+                {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+                <a class="btn btn-info" href="?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+                {% if page_obj.next_page_number < page_obj.paginator.num_pages %}
+                    ...<a class="btn btn-info" href="?page={{ page_obj.paginator.num_pages }}">{{ page_obj.paginator.num_pages }}</a>
+                {% endif %}
+            {% endif %}
+        {% endif %}
+    </div>
+
+{% endblock body %}

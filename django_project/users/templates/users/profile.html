@@ -8,18 +8,28 @@
             <div class="media-body">
               <h2 class="account-heading">{{ user.username }}</h2>
               <p class="text-secondary">{{ user.email }}</p>
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <fieldset>
+                <legend class="border-bottom mb-4">Update Profile Image and Bio</legend>
+                {{ p_form|crispy }}
+            </fieldset>
+            <div class="form-group">
+                <button class="btn btn-outline-info" type="submit"> Update </button>
+            </div>
+        </form>
             </div>
           </div>
         </div>
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <fieldset>
-                <legend class="border-bottom mb-4">Update Profile</legend>
+                <legend class="border-bottom mb-4">Update Username and Email</legend>
                 {{ u_form|crispy }}
-                {{ p_form|crispy }}
             </fieldset>
             <div class="form-group">
                 <button class="btn btn-outline-info" type="submit"> Update </button>
+                <a class="btn btn-outline-danger" href="{% url 'user-delete' user.id %}">Delete Profile</a>
             </div>
         </form>
         <div class="border-top pt-3">
@@ -28,7 +38,4 @@
             </small>
         </div>
     </div>
-
-
-
 {% endblock body %}

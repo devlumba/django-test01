@@ -13,6 +13,7 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{% static 'blog/base.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'blog/logo.png' %}">
 
 </head>
 <body>
@@ -25,14 +26,17 @@
               </button>
               <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-                  <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home <span class="sr-only">(current)</span></a>
+                  <a class="nav-item nav-link" href="{% url 'blog-home' %}">Home</a>
+                  <a class="nav-item nav-link" href="{% url 'blog-home_images' %}">Images</a>
+                  <a class="nav-item nav-link" href="{% url 'blog-home_videos' %}">Videos</a>
                   <a class="nav-item nav-link" href="{% url 'blog-about' %}">About</a>
                   <a class="nav-item nav-link my-2 my-sm-0" href="{% url 'blog-all_users' %}">All Users</a>
                 </div>
               </div>
                 <div class="navbar-nav">
                     {% if user.is_authenticated %}
-                        <a class="nav-item nav-link" href="{% url 'profile' %}">{{ user.username }}</a>
+                        <a class="nav-item nav-link" href="{% url 'create' %}">New Post</a>
+                        <a class="nav-item nav-link" href="{% url 'user-detail' request.user.id %}">{{ request.user.username }}</a>
                         <a class="nav-item nav-link" href="{% url 'logout-page' %}">Logout</a>
                     {% else %}
                         <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
