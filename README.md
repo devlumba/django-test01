@@ -1,3 +1,2 @@
-First serious try for Django. Starting with following Corey Schafer's Django turorial course. 
+This project is my first serious try of Django. It has users, user profiles(profile is created right after registration) that allow user to set their own profile image and bio(description), users can create text posts(shown at Home), image posts(Images) and video posts(Videos). There are pages for each post(text/image/video) and each user that are different if user who looks at it is owner of post/user page(update for post and link to "/profile/" for user page). Profile link allows user to change their image/bio, username/email and accessible only for logged users, gets current user so one user can't see '/profile/' of other one. Any post can be updated and deleted. There are pages for displaying all text/image/video posts, all users.
 
-shell.txt file is for remembering what to type in shell, it's not used in project.
